@@ -1,7 +1,7 @@
 {
   "name": "preact-redux",
   "amdName": "preactRedux",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Wraps react-redux up for Preact, without preact-compat",
   "main": "dist/preact-redux.js",
   "src:main": "src/index.js",
