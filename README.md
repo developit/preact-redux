@@ -43,6 +43,6 @@ render(<Main />, document.body);
 [MIT]
 
 
-[react-redux](https://github.com/reactjs/react-redux)
+[react-redux]: https://github.com/reactjs/react-redux
 [Preact]: https://github.com/developit/preact
 [MIT]: http://choosealicense.com/licenses/mit/

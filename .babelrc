@@ -1,6 +1,7 @@
 {
   "presets": ["es2015-minimal", "stage-0", "react"],
   "plugins": [
+    "transform-node-env-inline",
     "transform-react-remove-prop-types",
     "transform-class-properties",
     ["transform-es2015-classes", { "loose":true }],
