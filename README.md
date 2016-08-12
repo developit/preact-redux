@@ -7,6 +7,7 @@ Wraps [react-redux] up for [Preact], without using [preact-compat](https://githu
 
 > Think of this as a version of `react-redux` that is pre-aliased to use preact in place of React.
 
+**See [preact-redux-example](https://github.com/developit/preact-redux-example):** _a full working example of `redux` + `preact` using `preact-redux`!_
 
 ---
 
