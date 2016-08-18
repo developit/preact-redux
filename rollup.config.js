@@ -14,13 +14,16 @@ var external = [
 export default {
 	exports: 'named',
 	external: external,
+	useStrict: false,
 	plugins: [
 		alias({
 			'react-redux': 'node_modules/react-redux/src/index.js',
-			'react': __dirname+'/src/compat.js'
+			'react': __dirname+'/src/compat.js',
+			'invariant': __dirname+'/src/empty.js'
 		}),
 		nodeResolve({
 			jsnext: true,
+			module: true,
 			skip: ['react', 'preact'],
 			preferBuiltins: false
 		}),

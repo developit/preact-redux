@@ -1,1 +1,1 @@
-export * from 'react-redux';
+export { Provider, connect } from 'react-redux';
