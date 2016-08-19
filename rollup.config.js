@@ -3,6 +3,7 @@ import alias from 'rollup-plugin-alias';
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
+import es3 from 'rollup-plugin-es3';
 
 var babelRc = JSON.parse(fs.readFileSync('.babelrc','utf8'));
 
@@ -35,6 +36,7 @@ export default {
 			babelrc: false,
 			presets: ['es2015-minimal-rollup'].concat(babelRc.presets.slice(1)),
 			plugins: babelRc.plugins
-		})
+		}),
+		es3()
 	]
 };
