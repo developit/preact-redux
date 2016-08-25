@@ -4,6 +4,7 @@
   "version": "1.1.0",
   "description": "Wraps react-redux up for Preact, without preact-compat",
   "main": "dist/preact-redux.js",
+  "jsnext:main": "src/index.js",
   "src:main": "src/index.js",
   "minified:main": "dist/preact-redux.min.js",
   "scripts": {
