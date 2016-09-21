@@ -50,7 +50,12 @@ export default {
 		}),
 		babel({
 			babelrc: false,
-			presets: ['es2015-minimal-rollup'].concat(babelRc.presets.slice(1)),
+			presets: [
+				['es2015', {
+					loose: true,
+					modules: false
+				}]
+			].concat(babelRc.presets.slice(1)),
 			plugins: babelRc.plugins
 		}),
 		replace({
