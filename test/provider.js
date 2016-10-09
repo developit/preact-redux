@@ -2,6 +2,8 @@ import { createStore } from 'redux';
 import { Provider, connect } from '../';
 import { h, render, options } from 'preact';
 
+import Redux from '../dist/preact-redux.esm.js';
+
 // disable async rendering entirely to make tests simpler
 options.debounceRendering = f => f();
 
@@ -88,5 +90,12 @@ describe('preact-redux', () => {
 				onB: spies.onB
 			});
 		});
+	});
+
+	describe('jsnext:main', () => {
+	  it('should export the correct interface', () => {
+	    expect(Redux.Provider).to.be.a('function');
+	    expect(Redux.connect).to.be.a('function');
+	  });
 	});
 });
