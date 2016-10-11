@@ -10,6 +10,8 @@ import es3 from 'rollup-plugin-es3';
 const babelRc = JSON.parse(fs.readFileSync('.babelrc','utf8'));
 const packageJson = require('./package.json');
 
+babelRc.plugins.push('external-helpers');
+
 const external = [
 	'redux',
 	'preact'
@@ -19,6 +21,10 @@ export default {
 	exports: 'default',
 	external: external,
 	useStrict: false,
+	globals: {
+    preact: 'preact',
+    redux: 'redux'
+  },
 	targets: [
 		{
 			dest: packageJson['main'],
@@ -70,7 +76,7 @@ export default {
 					modules: false
 				}]
 			].concat(babelRc.presets.slice(1)),
-			plugins: ['external-helpers', ...babelRc.plugins]
+			plugins: babelRc.plugins
 		}),
 		replace({
 			'process.env.NODE_ENV': JSON.stringify('production')
