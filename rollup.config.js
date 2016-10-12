@@ -7,9 +7,12 @@ import replace from 'rollup-plugin-replace';
 import babel from 'rollup-plugin-babel';
 import es3 from 'rollup-plugin-es3';
 
-var babelRc = JSON.parse(fs.readFileSync('.babelrc','utf8'));
+const babelRc = JSON.parse(fs.readFileSync('.babelrc','utf8'));
+const packageJson = require('./package.json');
 
-var external = [
+babelRc.plugins.push('external-helpers');
+
+const external = [
 	'redux',
 	'preact'
 ];
@@ -18,6 +21,23 @@ export default {
 	exports: 'default',
 	external: external,
 	useStrict: false,
+	globals: {
+    preact: 'preact',
+    redux: 'redux'
+  },
+	targets: [
+		{
+			dest: packageJson['main'],
+			format: 'umd',
+			moduleName: 'preactRedux',
+			sourceMap: true
+		},
+		{
+			dest: packageJson['jsnext:main'],
+			format: 'es',
+			sourceMap: true
+		}
+	],
 	plugins: [
 		memory({
 			path: 'src/index',
