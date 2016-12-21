@@ -9,12 +9,14 @@
   "minified:main": "dist/preact-redux.min.js",
   "scripts": {
     "clean": "rimraf dist/",
-    "build": "NODE_ENV=production npm-run-all clean transpile minify size",
+    "build": "NODE_ENV=production npm-run-all clean transpile copy-typescript-definition minify size",
     "transpile": "rollup -c rollup.config.js -m ${npm_package_main}.map -f umd -n $npm_package_amdName $npm_package_src_main",
     "minify": "uglifyjs $npm_package_main --define NODE_ENV=production --pure-funcs classCallCheck Object.defineProperty Object.freeze invariant warning -c unsafe,collapse_vars,evaluate,screw_ie8,loops,keep_fargs=false,pure_getters,unused,dead_code -m -o $npm_package_minified_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_minified_main}.map",
     "size": "size=$(gzip-size $npm_package_minified_main) && echo \"gzip size: $size / $(pretty-bytes $size)\"",
     "test": "NODE_ENV=development npm-run-all lint transpile test:karma",
     "lint": "eslint {src,test}",
+    "copy-typescript-definition": "copyfiles -f src/preact-redux.d.ts dist",
+
     "test:karma": "karma start --single-run",
     "test:watch": "karma start",
     "prepublish": "npm-run-all build test",
@@ -30,6 +32,7 @@
     "type": "git",
     "url": "git+https://github.com/developit/preact-redux.git"
   },
+  "typings": "dist/preact-redux.d.ts",
   "bugs": {
     "url": "https://github.com/developit/preact-redux/issues"
   },
@@ -39,6 +42,7 @@
     "redux": ">=2"
   },
   "devDependencies": {
+    "@types/redux": "^3.6.0",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-eslint": "^6.1.2",
@@ -54,6 +58,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
+    "copyfiles": "^1.0.0",
     "diff": "^3.0.0",
     "eslint": "^3.3.1",
     "eslint-plugin-react": "^6.1.2",
