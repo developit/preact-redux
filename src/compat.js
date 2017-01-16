@@ -12,5 +12,6 @@ proptype.isRequired = proptype;
 export const PropTypes = {
 	element: proptype,
 	func: proptype,
-	shape: () => proptype
+	shape: () => proptype,
+  instanceOf: ()=> proptype
 };

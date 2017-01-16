@@ -71,7 +71,7 @@
     "phantomjs-prebuilt": "^2.1.12",
     "preact": "^6.0.2",
     "pretty-bytes-cli": "^2.0.0",
-    "react-redux": "^4.4.5",
+    "react-redux": "^5.0.0",
     "redux": "^3.6.0",
     "rimraf": "^2.5.4",
     "rollup": "^0.36.0",
