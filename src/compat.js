@@ -13,5 +13,5 @@ export const PropTypes = {
 	element: proptype,
 	func: proptype,
 	shape: () => proptype,
-  instanceOf: ()=> proptype
+	instanceOf: ()=> proptype
 };
