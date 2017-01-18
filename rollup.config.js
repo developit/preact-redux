@@ -18,13 +18,13 @@ const external = [
 ];
 
 export default {
-	exports: 'default',
+	entry: 'src/index',
 	external: external,
 	useStrict: false,
 	globals: {
-    preact: 'preact',
-    redux: 'redux'
-  },
+		preact: 'preact',
+		redux: 'redux'
+	},
 	targets: [
 		{
 			dest: packageJson['main'],
@@ -39,10 +39,6 @@ export default {
 		}
 	],
 	plugins: [
-		memory({
-			path: 'src/index',
-			contents: "import * as lib from './index'; export default lib;"
-		}),
 		{
 			// This insane thing transforms Lodash CommonJS modules to ESModules. Doing so shaves 500b (20%) off the library size.
 			load: function(id) {

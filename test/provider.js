@@ -3,6 +3,11 @@ import { Provider, connect, connectAdvanced } from '../';
 import { h, render, options } from 'preact';
 
 import Redux from '../dist/preact-redux.esm.js';
+import {
+	Provider as ESMProvider,
+	connect as ESMconnect,
+	connectAdvanced as ESMAdvanced
+} from '../dist/preact-redux.esm.js';
 
 // disable async rendering entirely to make tests simpler
 options.debounceRendering = f => f();
@@ -186,7 +191,10 @@ describe('preact-redux', () => {
 			expect(Redux.Provider).to.be.a('function');
 			expect(Redux.connect).to.be.a('function');
 			expect(Redux.connectAdvanced).to.be.a('function');
+
+			expect(ESMProvider).to.be.a('function');
+			expect(ESMconnect).to.be.a('function');
+			expect(ESMAdvanced).to.be.a('function');
 		});
 	});
 });
-
