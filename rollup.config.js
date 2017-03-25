@@ -22,9 +22,9 @@ export default {
 	external: external,
 	useStrict: false,
 	globals: {
-    preact: 'preact',
-    redux: 'redux'
-  },
+		preact: 'preact',
+		redux: 'Redux'
+	},
 	targets: [
 		{
 			dest: packageJson['main'],
