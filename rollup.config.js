@@ -1,5 +1,4 @@
 import fs from 'fs';
-import memory from 'rollup-plugin-memory';
 import alias from 'rollup-plugin-alias';
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
@@ -8,7 +7,6 @@ import babel from 'rollup-plugin-babel';
 import es3 from 'rollup-plugin-es3';
 
 const babelRc = JSON.parse(fs.readFileSync('.babelrc','utf8'));
-const packageJson = require('./package.json');
 
 babelRc.plugins.push('external-helpers');
 
@@ -18,31 +16,14 @@ const external = [
 ];
 
 export default {
-	exports: 'default',
 	external: external,
 	useStrict: false,
 	globals: {
 		preact: 'preact',
 		redux: 'Redux'
 	},
-	targets: [
-		{
-			dest: packageJson['main'],
-			format: 'umd',
-			moduleName: 'preactRedux',
-			sourceMap: true
-		},
-		{
-			dest: packageJson['jsnext:main'],
-			format: 'es',
-			sourceMap: true
-		}
-	],
+	sourceMap: true,
 	plugins: [
-		memory({
-			path: 'src/index',
-			contents: "import * as lib from './index'; export default lib;"
-		}),
 		{
 			// This insane thing transforms Lodash CommonJS modules to ESModules. Doing so shaves 500b (20%) off the library size.
 			load: function(id) {
@@ -61,7 +42,6 @@ export default {
 		nodeResolve({
 			jsnext: true,
 			module: true,
-			skip: ['react', 'preact'],
 			preferBuiltins: false
 		}),
 		commonjs({
