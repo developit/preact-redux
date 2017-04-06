@@ -9,8 +9,9 @@
   "minified:main": "dist/preact-redux.min.js",
   "scripts": {
     "clean": "rimraf dist/",
-    "build": "NODE_ENV=production npm-run-all clean transpile minify size",
-    "transpile": "rollup -c rollup.config.umd.js && rollup -c rollup.config.es6.js",
+    "build": "npm-run-all clean transpile:* minify size",
+    "transpile:umd": "rollup -c --environment FORMAT:umd",
+    "transpile:es": "rollup -c --environment FORMAT:es",
     "minify": "uglifyjs $npm_package_main --define NODE_ENV=production --pure-funcs classCallCheck Object.defineProperty Object.freeze invariant warning -c unsafe,collapse_vars,evaluate,screw_ie8,loops,keep_fargs=false,pure_getters,unused,dead_code -m -o $npm_package_minified_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_minified_main}.map",
     "size": "size=$(gzip-size $npm_package_minified_main) && echo \"gzip size: $size / $(pretty-bytes $size)\"",
     "test": "NODE_ENV=development npm-run-all lint transpile test:karma",
@@ -74,16 +75,19 @@
     "react-redux": "^5.0.0",
     "redux": "^3.6.0",
     "rimraf": "^2.5.4",
-    "rollup": "^0.41.6",
-    "rollup-plugin-alias": "^1.2.0",
-    "rollup-plugin-babel": "^2.6.1",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-es3": "^1.0.3",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-replace": "^1.1.1",
+    "rollup": "^0.41.1",
+    "rollup-plugin-buble": "^0.15.0",
+    "rollup-plugin-commonjs": "^7.0.0",
+    "rollup-plugin-memory": "^2.0.0",
+    "rollup-plugin-node-resolve": "^2.0.0",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "uglify-js": "^2.7.3",
     "webpack": "^1.13.2"
+  },
+  "dependencies": {
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "rollup-plugin-alias": "^1.2.1",
+    "rollup-plugin-babel": "^2.7.1"
   }
 }

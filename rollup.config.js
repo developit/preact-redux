@@ -1,29 +1,35 @@
 import fs from 'fs';
 import alias from 'rollup-plugin-alias';
-import commonjs from 'rollup-plugin-commonjs';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import replace from 'rollup-plugin-replace';
+import memory from 'rollup-plugin-memory';
 import babel from 'rollup-plugin-babel';
-import es3 from 'rollup-plugin-es3';
+import nodeResolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 
-const babelRc = JSON.parse(fs.readFileSync('.babelrc','utf8'));
+const babelRc = JSON.parse(fs.readFileSync('.babelrc'));
+let pkg = JSON.parse(fs.readFileSync('./package.json'));
 
-babelRc.plugins.push('external-helpers');
+let external = Object.keys(pkg.peerDependencies || {}).concat(Object.keys(pkg.dependencies || {}));
 
-const external = [
-	'redux',
-	'preact'
-];
+let format = process.env.FORMAT==='es' ? 'es' : 'umd';
 
 export default {
-	external: external,
+	entry: 'src/index.js',
+	sourceMap: true,
+	moduleName: pkg.amdName,
+	exports: format==='es' ? null : 'default',
+	dest: format==='es' ? pkg['jsnext:main'] : pkg['main'],
+	format,
+	external,
 	useStrict: false,
 	globals: {
-		preact: 'preact',
-		redux: 'Redux'
+			'preact': 'preact',
+			'redux': 'Redux'
 	},
-	sourceMap: true,
 	plugins: [
+		format==='umd' && memory({
+			path: 'src/index.js',
+			contents: "export { default } from './index';"
+		}),
 		{
 			// This insane thing transforms Lodash CommonJS modules to ESModules. Doing so shaves 500b (20%) off the library size.
 			load: function(id) {
@@ -39,28 +45,21 @@ export default {
 			'react': __dirname+'/src/compat.js',
 			'invariant': __dirname+'/src/empty.js'
 		}),
+		babel({
+			babelrc: false,
+			presets: [
+				['es2015-rollup']
+			].concat(babelRc.presets.slice(1)),
+			plugins: babelRc.plugins
+		}),
 		nodeResolve({
 			jsnext: true,
-			module: true,
-			preferBuiltins: false
+			main: true,
+			skip: external
 		}),
 		commonjs({
 			include: 'node_modules/**',
 			exclude: [ 'node_modules/react-redux/**']
-		}),
-		babel({
-			babelrc: false,
-			presets: [
-				['es2015', {
-					loose: true,
-					modules: false
-				}]
-			].concat(babelRc.presets.slice(1)),
-			plugins: babelRc.plugins
-		}),
-		replace({
-			'process.env.NODE_ENV': JSON.stringify('production')
-		}),
-		es3()
-	]
+		})
+	].filter(Boolean)
 };
