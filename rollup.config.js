@@ -4,6 +4,8 @@ import memory from 'rollup-plugin-memory';
 import babel from 'rollup-plugin-babel';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import replace from 'rollup-plugin-replace';
+import es3 from 'rollup-plugin-es3';
 
 const babelRc = JSON.parse(fs.readFileSync('.babelrc'));
 let pkg = JSON.parse(fs.readFileSync('./package.json'));
@@ -11,7 +13,7 @@ let pkg = JSON.parse(fs.readFileSync('./package.json'));
 let external = Object.keys(pkg.peerDependencies || {}).concat(Object.keys(pkg.dependencies || {}));
 
 let format = process.env.FORMAT==='es' ? 'es' : 'umd';
-
+babelRc.plugins.push('external-helpers');
 export default {
 	entry: 'src/index.js',
 	sourceMap: true,
@@ -48,18 +50,26 @@ export default {
 		babel({
 			babelrc: false,
 			presets: [
-				['es2015-rollup']
+				['es2015', {
+					loose: true,
+					modules: false
+				}]
 			].concat(babelRc.presets.slice(1)),
 			plugins: babelRc.plugins
 		}),
 		nodeResolve({
 			jsnext: true,
 			main: true,
-			skip: external
+			skip: external,
+			preferBuiltins: false
 		}),
 		commonjs({
 			include: 'node_modules/**',
 			exclude: [ 'node_modules/react-redux/**']
-		})
+		}),
+		replace({
+			'process.env.NODE_ENV': JSON.stringify('production')
+		}),
+		es3()
 	].filter(Boolean)
 };
