@@ -45,7 +45,8 @@ export default {
 		alias({
 			'react-redux': 'node_modules/react-redux/src/index.js',
 			'react': __dirname+'/src/compat.js',
-			'invariant': __dirname+'/src/empty.js'
+			'invariant': __dirname+'/src/empty.js',
+			'prop-types': __dirname+'/src/compat.js'
 		}),
 		babel({
 			babelrc: false,
@@ -60,16 +61,13 @@ export default {
 		nodeResolve({
 			jsnext: true,
 			main: true,
-			skip: external,
 			preferBuiltins: false
 		}),
 		commonjs({
-			include: 'node_modules/**',
+			include: ['node_modules/**'],
 			exclude: [ 'node_modules/react-redux/**']
 		}),
-		replace({
-			'process.env.NODE_ENV': JSON.stringify('production')
-		}),
+		replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
 		es3()
 	].filter(Boolean)
 };

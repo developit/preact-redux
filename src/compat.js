@@ -9,9 +9,11 @@ export const Children = {
 function proptype() {}
 proptype.isRequired = proptype;
 
-export const PropTypes = {
+const PropTypes = {
 	element: proptype,
 	func: proptype,
 	shape: () => proptype,
 	instanceOf: ()=> proptype
 };
+
+export default PropTypes
