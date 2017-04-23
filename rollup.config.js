@@ -8,7 +8,7 @@ import babel from 'rollup-plugin-babel';
 import es3 from 'rollup-plugin-es3';
 
 const babelRc = JSON.parse(fs.readFileSync('.babelrc','utf8'));
-const packageJson = require('./package.json');
+const pkg = require('./package.json');
 
 babelRc.plugins.push('external-helpers');
 
@@ -17,29 +17,23 @@ const external = [
 	'preact'
 ];
 
+let format = process.env.FORMAT==='es' ? 'es' : 'umd';
+
 export default {
-	exports: 'default',
-	external: external,
+  entry: 'src/index.js',
+  sourceMap: true,
+  moduleName: pkg.amdName,
+	exports: format ==='es' ? null : 'default',
+  dest: format==='es' ? pkg.module : pkg.main,
+  format,
+	external,
 	useStrict: false,
 	globals: {
 		preact: 'preact',
 		redux: 'Redux'
 	},
-	targets: [
-		{
-			dest: packageJson['main'],
-			format: 'umd',
-			moduleName: 'preactRedux',
-			sourceMap: true
-		},
-		{
-			dest: packageJson['jsnext:main'],
-			format: 'es',
-			sourceMap: true
-		}
-	],
 	plugins: [
-		memory({
+    format ==='umd' && memory({
 			path: 'src/index',
 			contents: "import * as lib from './index'; export default lib;"
 		}),
