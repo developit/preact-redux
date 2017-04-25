@@ -8,4 +8,4 @@ const PropTypes = {
 	instanceOf: ()=> proptype
 };
 
-export default PropTypes
+export default PropTypes;
