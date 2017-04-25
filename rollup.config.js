@@ -46,7 +46,7 @@ export default {
 			'react-redux': 'node_modules/react-redux/src/index.js',
 			'react': __dirname+'/src/compat.js',
 			'invariant': __dirname+'/src/empty.js',
-			'prop-types': __dirname+'/src/compat.js'
+			'prop-types': __dirname+'/src/prop-types.js'
 		}),
 		babel({
 			babelrc: false,
