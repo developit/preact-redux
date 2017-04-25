@@ -5,5 +5,3 @@ export const Children = {
 		return children && children[0] || null;
 	}
 };
-
-export { default as PropTypes } from './prop-types'
