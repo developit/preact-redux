@@ -1,5 +1,7 @@
 # preact-redux
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/developit/preact-redux.svg)](https://greenkeeper.io/)
+
 [![NPM](http://img.shields.io/npm/v/preact-redux.svg)](https://www.npmjs.com/package/preact-redux)
 [![travis-ci](https://travis-ci.org/developit/preact-redux.svg)](https://travis-ci.org/developit/preact-redux)
 
