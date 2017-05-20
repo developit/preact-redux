@@ -24,6 +24,10 @@
     "preact",
     "redux"
   ],
+  "files": [
+    "src",
+    "dist"
+  ],
   "author": "Jason Miller <jason@developit.ca>",
   "license": "MIT",
   "repository": {
