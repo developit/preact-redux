@@ -18,7 +18,7 @@ const external = [
 ];
 
 export default {
-	exports: 'default',
+	exports: 'named',
 	external: external,
 	useStrict: false,
 	globals: {
@@ -41,7 +41,7 @@ export default {
 	plugins: [
 		memory({
 			path: 'src/index',
-			contents: "import * as lib from './index'; export default lib;"
+			contents: "export * from './index';"
 		}),
 		{
 			// This insane thing transforms Lodash CommonJS modules to ESModules. Doing so shaves 500b (20%) off the library size.
