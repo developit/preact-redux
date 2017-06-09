@@ -1,47 +1,36 @@
 import fs from 'fs';
-import memory from 'rollup-plugin-memory';
 import alias from 'rollup-plugin-alias';
-import commonjs from 'rollup-plugin-commonjs';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import replace from 'rollup-plugin-replace';
+import memory from 'rollup-plugin-memory';
 import babel from 'rollup-plugin-babel';
+import nodeResolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
+import replace from 'rollup-plugin-replace';
 import es3 from 'rollup-plugin-es3';
 
-const babelRc = JSON.parse(fs.readFileSync('.babelrc','utf8'));
-const packageJson = require('./package.json');
+const babelRc = JSON.parse(fs.readFileSync('.babelrc'));
+let pkg = JSON.parse(fs.readFileSync('./package.json'));
 
+let external = Object.keys(pkg.peerDependencies || {}).concat(Object.keys(pkg.dependencies || {}));
+
+let format = process.env.FORMAT==='es' ? 'es' : 'umd';
 babelRc.plugins.push('external-helpers');
-
-const external = [
-	'redux',
-	'preact'
-];
-
 export default {
-	exports: 'default',
-	external: external,
+	entry: 'src/index.js',
+	sourceMap: true,
+	moduleName: pkg.amdName,
+	exports: format==='es' ? null : 'default',
+	dest: format==='es' ? pkg['jsnext:main'] : pkg['main'],
+	format,
+	external,
 	useStrict: false,
 	globals: {
-		preact: 'preact',
-		redux: 'Redux'
+			'preact': 'preact',
+			'redux': 'Redux'
 	},
-	targets: [
-		{
-			dest: packageJson['main'],
-			format: 'umd',
-			moduleName: 'preactRedux',
-			sourceMap: true
-		},
-		{
-			dest: packageJson['jsnext:main'],
-			format: 'es',
-			sourceMap: true
-		}
-	],
 	plugins: [
-		memory({
-			path: 'src/index',
-			contents: "import * as lib from './index'; export default lib;"
+		format==='umd' && memory({
+			path: 'src/index.js',
+			contents: "export { default } from './index';"
 		}),
 		{
 			// This insane thing transforms Lodash CommonJS modules to ESModules. Doing so shaves 500b (20%) off the library size.
@@ -56,17 +45,8 @@ export default {
 		alias({
 			'react-redux': 'node_modules/react-redux/src/index.js',
 			'react': __dirname+'/src/compat.js',
-			'invariant': __dirname+'/src/empty.js'
-		}),
-		nodeResolve({
-			jsnext: true,
-			module: true,
-			skip: ['react', 'preact'],
-			preferBuiltins: false
-		}),
-		commonjs({
-			include: 'node_modules/**',
-			exclude: [ 'node_modules/react-redux/**']
+			'invariant': __dirname+'/src/empty.js',
+			'prop-types': __dirname+'/src/prop-types.js'
 		}),
 		babel({
 			babelrc: false,
@@ -78,9 +58,16 @@ export default {
 			].concat(babelRc.presets.slice(1)),
 			plugins: babelRc.plugins
 		}),
-		replace({
-			'process.env.NODE_ENV': JSON.stringify('production')
+		nodeResolve({
+			jsnext: true,
+			main: true,
+			preferBuiltins: false
 		}),
+		commonjs({
+			include: ['node_modules/**'],
+			exclude: [ 'node_modules/react-redux/**']
+		}),
+		replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
 		es3()
-	]
+	].filter(Boolean)
 };
