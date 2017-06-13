@@ -5,6 +5,7 @@
   "description": "Wraps react-redux up for Preact, without preact-compat",
   "main": "dist/preact-redux.js",
   "module": "dist/preact-redux.esm.js",
+  "types": "src/preact-redux.d.ts",
   "jsnext:main": "dist/preact-redux.esm.js",
   "minified:main": "dist/preact-redux.min.js",
   "scripts": {
