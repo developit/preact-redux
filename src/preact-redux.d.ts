@@ -1,20 +1,16 @@
-import { Component, ComponentConstructor, VNode, render } from 'preact';
-import * as Redux from 'redux';
-
-type Store<S> = Redux.Store<S>;
-type Dispatch<S> = Redux.Dispatch<S>;
-type ActionCreator<A> = Redux.ActionCreator<A>;
+import { AnyComponent, Component, ComponentConstructor, VNode, render } from 'preact';
+import { Store, Dispatch, ActionCreator } from 'redux';
 
 export interface DispatchProp<T> {
   dispatch: Dispatch<T>
 }
 
 interface ComponentDecorator<TMergedProps> {
-    <TOwnProps>(component: Component<(TOwnProps & TMergedProps) | TOwnProps, any>): ComponentConstructor<TOwnProps, any>;
+    <TOwnProps>(component: AnyComponent<(TOwnProps & TMergedProps) | TOwnProps, any>): ComponentConstructor<TOwnProps, any>;
 }
 
 interface ComponentMergeDecorator<TMergedProps, TOwnProps> {
-    (component: Component<TMergedProps, any>): ComponentConstructor<TOwnProps, any>;
+    (component: AnyComponent<TMergedProps, any>): ComponentConstructor<TOwnProps, any>;
 }
 
 /**
