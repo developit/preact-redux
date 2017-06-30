@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 import { Provider, connect, connectAdvanced } from '../';
 import { h, render, options } from 'preact';
 
-import Redux from '../dist/preact-redux.esm.js';
+import * as Redux from '../dist/preact-redux.esm.js';
 
 // disable async rendering entirely to make tests simpler
 options.debounceRendering = f => f();
