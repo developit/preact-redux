@@ -7,7 +7,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import replace from 'rollup-plugin-replace';
 import es3 from 'rollup-plugin-es3';
 
-let babelRc = JSON.parse(fs.readFileSync('.babelrc'));
+const babelRc = JSON.parse(fs.readFileSync('.babelrc'));
 let pkg = JSON.parse(fs.readFileSync('./package.json'));
 
 let external = Object.keys(pkg.peerDependencies || {}).concat(Object.keys(pkg.dependencies || {}));
@@ -21,7 +21,7 @@ export default {
 	sourceMap: true,
 	moduleName: pkg.amdName,
 	exports: format==='es' ? null : 'default',
-  dest: format==='es' ? pkg.module : pkg.main,
+	dest: format==='es' ? pkg.module : pkg.main,
 	format,
 	external,
 	useStrict: false,
