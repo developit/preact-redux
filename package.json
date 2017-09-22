@@ -1,7 +1,7 @@
 {
   "name": "preact-redux",
   "amdName": "preactRedux",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Wraps react-redux up for Preact, without preact-compat",
   "main": "dist/preact-redux.js",
   "module": "dist/preact-redux.esm.js",
