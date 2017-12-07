@@ -15,7 +15,8 @@
     "transpile:es": "rollup -c --environment FORMAT:es",
     "minify": "uglifyjs dist/preact-redux.js --define NODE_ENV=production --pure-funcs classCallCheck Object.defineProperty Object.freeze invariant warning -c unsafe,collapse_vars,evaluate,screw_ie8,loops,keep_fargs=false,pure_getters,unused,dead_code -m -o dist/preact-redux.min.js -p relative --in-source-map dist/preact-redux.js.map --source-map dist/preact-redux.min.js.map",
     "size": "gzip-size dist/preact-redux.min.js",
-    "test": "cross-env NODE_ENV=development npm-run-all lint transpile:* test:karma",
+    "test:ts": "tsc -p test/ts/",
+    "test": "cross-env NODE_ENV=development npm-run-all lint transpile:* test:karma test:ts",
     "lint": "eslint {src,test}",
     "test:karma": "karma start --single-run",
     "test:watch": "karma start",
@@ -93,6 +94,7 @@
     "sinon": "^2.1.0",
     "sinon-chai": "^2.9.0",
     "uglify-js": "^2.8.22",
-    "webpack": "^2.3.3"
+    "webpack": "^2.3.3",
+    "typescript":"^2.6.2"
   }
 }
