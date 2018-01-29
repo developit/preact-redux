@@ -275,5 +275,5 @@ export interface ProviderProps {
  * Makes the Redux store available to the connect() calls in the component hierarchy below.
  */
 export class Provider extends Component<ProviderProps, {}> {
-    render(props: ProviderProps): VNode
+    render(props?: ProviderProps): VNode
 }
