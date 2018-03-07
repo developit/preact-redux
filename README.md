@@ -14,7 +14,7 @@ Wraps [react-redux] up for [Preact], without using [preact-compat](https://githu
 
 ### Usage Example
 
-> This is a contrived example. Please refer to Redux's [Usage with React](http://redux.js.org/docs/basics/UsageWithReact.html) documentation for details on how to work with Redux from Preact.
+> This is a contrived example. Please refer to Redux's [Usage with React](https://redux.js.org/basics/usage-with-react) documentation for details on how to work with Redux from Preact.
 
 ```js
 import { Provider, connect } from 'preact-redux';
