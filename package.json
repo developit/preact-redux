@@ -41,8 +41,8 @@
   },
   "homepage": "https://github.com/developit/preact-redux",
   "peerDependencies": {
-    "preact": ">=3",
-    "redux": ">=2"
+    "preact": ">=8.2.8",
+    "redux": ">=4"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

@@ -6,16 +6,14 @@
 //                 Frank Tan <https://github.com/tansongyang>
 //                 Daniil Kolesnik <https://github.com/rand0me>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// TypeScript Version: 2.4
+// TypeScript Version: 3.0
 
-import { AnyComponent, Component, ComponentConstructor, VNode } from 'preact';
-import { Store, Dispatch, ActionCreator } from 'redux';
+import { AnyComponent, Component, ComponentConstructor, VNode, RenderableProps } from 'preact';
+import { Store, Dispatch, ActionCreator, Action } from 'redux';
 
-// Diff / Omit taken from https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-311923766
-type Diff<T extends string, U extends string> = ({ [P in T]: P } & { [P in U]: never } & { [x: string]: never })[T];
-type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
+type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
-export interface DispatchProp<S> {
+export interface DispatchProp<S extends Action> {
   dispatch?: Dispatch<S>;
 }
 
@@ -197,7 +195,7 @@ interface Options<TStateProps = {}, TOwnProps = {}, TMergedProps = {}> extends C
  * @param connectOptions If specified, further customizes the behavior of the connector. Additionally, any extra
  *     options will be passed through to your <code>selectorFactory</code> in the <code>factoryOptions</code> argument.
  */
-export declare function connectAdvanced<S, TProps, TOwnProps, TFactoryOptions = {}>(
+export declare function connectAdvanced<S extends Action, TProps, TOwnProps, TFactoryOptions = {}>(
     selectorFactory: SelectorFactory<S, TProps, TOwnProps, TFactoryOptions>,
     connectOptions?: ConnectOptions & TFactoryOptions
 ): AdvancedComponentDecorator<TProps, TOwnProps>;
@@ -210,7 +208,7 @@ export declare function connectAdvanced<S, TProps, TOwnProps, TFactoryOptions = 
  * call, the component will not be re-rendered. It's the responsibility of <code>selector</code> to return that
  * previous object when appropriate.
  */
-export interface SelectorFactory<S, TProps, TOwnProps, TFactoryOptions> {
+export interface SelectorFactory<S extends Action, TProps, TOwnProps, TFactoryOptions> {
     (dispatch: Dispatch<S>, factoryOptions: TFactoryOptions): Selector<S, TProps, TOwnProps>
 }
 
@@ -275,5 +273,5 @@ export interface ProviderProps {
  * Makes the Redux store available to the connect() calls in the component hierarchy below.
  */
 export class Provider extends Component<ProviderProps, {}> {
-    render(props?: ProviderProps): VNode
+    render(props: RenderableProps<ProviderProps>): VNode
 }
