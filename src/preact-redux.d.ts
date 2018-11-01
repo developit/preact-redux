@@ -8,7 +8,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.4
 
-import { ComponentFactory, Component, ComponentConstructor, VNode } from 'preact';
+import { Component, ComponentConstructor, VNode, ComponentFactory } from 'preact';
 import { Store, Dispatch, ActionCreator } from 'redux';
 
 // Diff / Omit taken from https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-311923766
@@ -27,9 +27,9 @@ interface AdvancedComponentDecorator<TProps, TOwnProps> {
 // Will not pass through the injected props if they are passed in during
 // render. Also adds new prop requirements from TNeedsProps.
 export interface InferableComponentEnhancerWithProps<TInjectedProps, TNeedsProps> {
-    <P extends TInjectedProps>(
-        component: ComponentFactory<P>
-    ): ComponentConstructor<Omit<P, keyof TInjectedProps> & TNeedsProps, {}>
+    <Props extends Partial<TInjectedProps>>(
+        component: ComponentFactory<Props>
+    ): ComponentConstructor<Omit<Props, keyof TInjectedProps> & TNeedsProps, {}>
 }
 
 // Injects props and removes them from the prop requirements.
