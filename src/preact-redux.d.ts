@@ -6,9 +6,9 @@
 //                 Frank Tan <https://github.com/tansongyang>
 //                 Daniil Kolesnik <https://github.com/rand0me>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// TypeScript Version: 2.4
+// TypeScript Version: 3.0
 
-import { AnyComponent, Component, ComponentConstructor, VNode } from 'preact';
+import { AnyComponent, Component, ComponentConstructor, VNode, RenderableProps } from 'preact';
 import { Store, Dispatch, ActionCreator, Action } from 'redux';
 
 // Diff / Omit taken from https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-311923766
@@ -276,5 +276,5 @@ export interface ProviderProps {
  * Makes the Redux store available to the connect() calls in the component hierarchy below.
  */
 export class Provider extends Component<ProviderProps, {}> {
-    render(props?: ProviderProps): JSX.Element | null
+    render(props: RenderableProps<ProviderProps>): VNode | JSX.Element | null
 }
