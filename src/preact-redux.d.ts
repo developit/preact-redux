@@ -14,7 +14,7 @@ import { Store, Dispatch, ActionCreator, Action } from 'redux';
 // Diff / Omit taken from https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-311923766
 type Diff<T extends string, U extends string> = ({ [P in T]: P } & { [P in U]: never } & { [x: string]: never })[T];
 // new Omit in TS2.9 https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-377567046
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export interface DispatchProp<A extends Action> {
   dispatch?: Dispatch<A>;
