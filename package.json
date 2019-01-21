@@ -1,5 +1,5 @@
 {
-  "name": "preact-redux",
+  "name": "@iadvize/preact-redux",
   "amdName": "preactRedux",
   "version": "2.0.3",
   "description": "Wraps react-redux up for Preact, without preact-compat",
