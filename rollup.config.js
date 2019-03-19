@@ -5,7 +5,6 @@ import nodeResolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import replace from "rollup-plugin-replace";
 import es3 from "rollup-plugin-es3";
-import visualizer from "rollup-plugin-visualizer";
 import cleanup from "rollup-plugin-cleanup";
 
 const babelRc = JSON.parse(fs.readFileSync(".babelrc"));
