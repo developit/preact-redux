@@ -16,7 +16,7 @@
     "minify": "terser dist/preact-redux.js --define NODE_ENV=production -c 'pure_funcs=\"classCallCheck,console.warn,invariant,warning,React.forwardRef\",unsafe,collapse_vars,evaluate,loops,keep_fargs=false,pure_getters,unused,dead_code' -m --mangle-props regex=/_/ -o dist/preact-redux.min.js --source-map content=dist/preact-redux.js.map,filename=dist/preact-redux.min.js.map",
     "size": "gzip-size dist/preact-redux.min.js",
     "test": "cross-env NODE_ENV=development npm-run-all lint transpile:* test:karma",
-    "lint": "eslint {src,test}",
+    "lint": "eslint src/ test/",
     "test:karma": "karma start --single-run",
     "test:watch": "karma start",
     "prepublish": "npm-run-all build test",
