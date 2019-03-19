@@ -1,7 +1,10 @@
-export { Component, h as createElement } from 'preact';
+export { Component, Component as PureComponent } from "preact";
+import { createContext } from "preact-context";
+import { h } from "preact";
+import empty from "./empty";
 
-export const Children = {
-	only(children) {
-		return children && children[0] || null;
-	}
+export default {
+	createContext,
+	forwardRef: empty,
+	createElement: h
 };
