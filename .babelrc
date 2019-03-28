@@ -10,12 +10,6 @@
   ],
   "plugins": [
     "transform-react-remove-prop-types",
-    "@babel/plugin-proposal-class-properties",
-    [
-      "@babel/plugin-transform-react-jsx",
-      {
-        "pragma": "React.createElement"
-      }
-    ]
+    "@babel/plugin-proposal-class-properties"
   ]
 }
