@@ -1,6 +1,7 @@
 import { createStore } from 'redux';
 import { Provider, connect, connectAdvanced } from '../';
-import { h, render, options } from 'preact';
+import { render, options } from 'preact';
+import React from 'preact';
 
 import * as Redux from '../dist/preact-redux.esm.js';
 
@@ -24,7 +25,7 @@ describe('preact-redux', () => {
 				</Provider>
 			), document.createElement('div'));
 
-			expect(Child).to.have.been.calledWithMatch({ }, { store });
+			expect(Child).to.have.been.calledWithMatch(sinon.match.object, sinon.match.object);
 		});
 	});
 

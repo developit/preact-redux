@@ -1,13 +1,15 @@
 {
   "presets": [
-    ["es2015", { "loose": true }],
-    "stage-0",
-    "react"
+    [
+      "@babel/preset-env",
+      {
+        "loose": true
+      }
+    ],
+    "@babel/preset-react"
   ],
   "plugins": [
-    "transform-node-env-inline",
     "transform-react-remove-prop-types",
-    "transform-class-properties",
-    ["transform-react-jsx", { "pragma":"h" }]
+    "@babel/plugin-proposal-class-properties"
   ]
 }
