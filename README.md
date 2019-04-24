@@ -3,11 +3,13 @@
 [![NPM](http://img.shields.io/npm/v/preact-redux.svg)](https://www.npmjs.com/package/preact-redux)
 [![travis-ci](https://travis-ci.org/developit/preact-redux.svg)](https://travis-ci.org/developit/preact-redux)
 
-Wraps [react-redux] up for [Preact], without using [preact-compat](https://github.com/developit/preact-compat).
-
-> Think of this as a version of `react-redux` that is pre-aliased to use preact in place of React.
+Wraps [react-redux] up for [Preact] (8.x and prior), without using [preact-compat](https://github.com/developit/preact-compat). Think of this as a version of `react-redux` that is pre-aliased to use preact in place of React.
 
 **See [preact-redux-example](https://github.com/developit/preact-redux-example):** _a full working example of `redux` + `preact` using `preact-redux`!_
+
+> 💁‍ **Compatibility Note:**
+>
+> If you're using Preact X (preact@10+), please use the official [react-redux] library.
 
 ---
 
