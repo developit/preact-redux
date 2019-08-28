@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/developit/preact-redux",
   "peerDependencies": {
-    "preact": "<10",
+    "preact": ">8",
     "redux": ">=2",
     "preact-context": ">=1.1.0"
   },
