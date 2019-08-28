@@ -1,6 +1,5 @@
 export { Component, Component as PureComponent } from "preact";
-import { createContext } from "preact-context";
-import { h } from "preact";
+import { h, createContext } from "preact";
 import empty from "./empty";
 
 export default {
