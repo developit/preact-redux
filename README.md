@@ -7,10 +7,6 @@ Wraps [react-redux] up for [Preact] (8.x and prior), without using [preact-compa
 
 **See [preact-redux-example](https://github.com/developit/preact-redux-example):** _a full working example of `redux` + `preact` using `preact-redux`!_
 
-> 💁‍ **Compatibility Note:**
->
-> If you're using Preact X (preact@10+), please use the official [react-redux] library.
-
 ---
 
 
