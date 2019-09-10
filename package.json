@@ -42,8 +42,7 @@
   "homepage": "https://github.com/developit/preact-redux",
   "peerDependencies": {
     "preact": ">8",
-    "redux": ">=2",
-    "preact-context": ">=1.1.0"
+    "redux": ">=2"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
@@ -72,7 +71,7 @@
     "mkdirp": "^0.5.1",
     "mocha": "^6.1.2",
     "npm-run-all": "^4.0.2",
-    "preact": "^10.0.0-rc.1",
+    "preact": "10.0.0-rc.3",
     "pretty-bytes-cli": "^2.0.0",
     "react-redux": "^6.0.1",
     "redux": "^4.0.0",
