@@ -35,12 +35,14 @@ export default {
     alias({
       "react-redux": "node_modules/react-redux/src/index.js",
       react: __dirname + "/src/compat.js",
+      "react-dom": __dirname + "/src/compat.js",
       invariant: __dirname + "/src/empty.js",
       "prop-types": __dirname + "/src/prop-types.js"
     }),
     replace({
       "process.env.NODE_ENV": JSON.stringify("production"),
       "typeof Symbol": JSON.stringify("string"),
+      "Symbol.for": "false",
       "(forwardRef)": "(false)"
     }),
     babel({

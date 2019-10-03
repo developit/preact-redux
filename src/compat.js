@@ -1,9 +1,4 @@
-export { Component, Component as PureComponent } from "preact";
-import { h, createContext } from "preact";
-import empty from "./empty";
+import * as React from 'preact/compat';
 
-export default {
-	createContext,
-	forwardRef: empty,
-	createElement: h
-};
+export * from 'preact/compat';
+export default React;

@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/developit/preact-redux",
   "peerDependencies": {
-    "preact": ">8",
+    "preact": ">10",
     "redux": ">=2"
   },
   "devDependencies": {
@@ -71,10 +71,10 @@
     "mkdirp": "^0.5.1",
     "mocha": "^6.1.2",
     "npm-run-all": "^4.0.2",
-    "preact": "10.0.0-rc.3",
+    "preact": "^10.0.0",
     "pretty-bytes-cli": "^2.0.0",
-    "react-redux": "^6.0.1",
-    "redux": "^4.0.0",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
     "rimraf": "^2.6.1",
     "rollup": "^1.9.2",
     "rollup-plugin-alias": "^1.2.1",
