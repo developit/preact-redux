@@ -42,7 +42,7 @@ export default {
     replace({
       "process.env.NODE_ENV": JSON.stringify("production"),
       "typeof Symbol": JSON.stringify("string"),
-      "Symbol.for": "false",
+      "Symbol.for": "undefined",
       "(forwardRef)": "(false)"
     }),
     babel({
