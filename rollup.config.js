@@ -11,7 +11,7 @@ const babelRc = JSON.parse(fs.readFileSync(".babelrc"));
 let pkg = JSON.parse(fs.readFileSync("./package.json"));
 
 let external = Object.keys(pkg.peerDependencies || {}).concat(
-  Object.keys(pkg.dependencies || {})
+  Object.keys(pkg.dependencies || {}), 'preact/compat'
 );
 
 let format = process.env.FORMAT === "es" ? "es" : "umd";
