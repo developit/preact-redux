@@ -1,13 +1,18 @@
-import { createContext, createElement, Component } from 'preact';
 import {
+	createContext,
+	createElement,
+	Component,
 	useEffect,
 	useContext,
 	useMemo,
 	useLayoutEffect,
 	useRef,
-	useReducer
-} from 'preact/hooks';
-import { memo, forwardRef, PureComponent, unstable_batchedUpdates } from 'preact/compat';
+	useReducer,
+	memo,
+	forwardRef,
+	PureComponent,
+	unstable_batchedUpdates
+} from 'preact/compat';
 
 const React = {
 	Component,
