@@ -1,8 +1,7 @@
 import { createStore } from 'redux';
-import { Provider, connect, connectAdvanced } from '../';
+import { Provider, connect, connectAdvanced } from '../dist/preact-redux.esm';
 import { render, options } from 'preact';
-import React from 'preact';
-
+import * as React from 'preact';
 import * as Redux from '../dist/preact-redux.esm.js';
 
 // disable async rendering entirely to make tests simpler
