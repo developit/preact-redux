@@ -7,9 +7,6 @@ Wraps [`react-redux`](https://react-redux.js.org/) up for [Preact] (8.x and prio
 
 **See [preact-redux-example](https://github.com/developit/preact-redux-example):** _a full working example of `redux` + `preact` using `preact-redux`!_
 
-### ⚠️ Long time support
-With Preact version prior to `10`, users who want to use `redux` without the need for aliasing `preact -> react` could find this package helpful, but in the long run you should use [`react-redux`](https://react-redux.js.org/) since that's the official binding for `redux` and it's going to be updated and maintain by the `redux` team. Updating `preact-redux` to work with `preact@10` it's our last effort to maintain this package and we encourage you to switch to [`react-redux`](https://react-redux.js.org/) for your `redux` needs. This packages has no extra logic inside that's `preact` specific. It only imports and exports the necesary packages from `preact/compat` and `react-redux`.
-
 ---
 
 
